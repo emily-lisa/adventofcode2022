@@ -2,11 +2,13 @@ with open('input.txt', 'r') as f:
     lines = f.readlines()
     lines = [temp.strip() for temp in lines]
 
-    print(lines)
+    #print(lines)
 
     dir_tree = []
     dir_size = []
+    dir_tree.append("main")
     current_dir = ''
+    current_size = 0
     x = 0
     y = 0
 
@@ -19,18 +21,36 @@ with open('input.txt', 'r') as f:
                         y -= 1
                     else:
                         y += 1
-                        line.split()
-                        if len(dir_tree[y]) < x:
-                            dir_tree[y].insert(x, line[2])
-                        else:
-                            dir_tree[y] = line[2]
+                        print(current_size)
+                        line = line.split()
+                        current_dir = line[2]
+                        dir_tree.append(current_dir)
+                        dir_size.append(current_size)
+                        current_size = 0
+                        
                         
 
 
-                case 'l':
+                #case 'l':
         
         elif line[0] == 'd':
+            print(line)
 
         else:
-            line.split()
-            += int(line[0])
+            line = line.split()
+            current_size += int(line[0])
+
+
+    dir_size.append(current_size)
+
+    total = 0
+
+    for i in range(len(dir_tree)):
+        print(dir_tree[i])
+        print(dir_size[i])
+        if dir_size[i] <= 100000:
+            total += dir_size[i]
+        print("______")
+
+
+    print(total)
